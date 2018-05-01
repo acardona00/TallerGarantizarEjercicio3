@@ -16,6 +16,6 @@ public class depositCreatedPage {
     public String getCurrentBalance() {
        return webDriver.findElement(currentBalance).getText();
     }
-    
+       
     
 }
