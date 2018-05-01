@@ -39,7 +39,7 @@ public class SeleniumTest {
             state = "antioquia",
             pin = "123456",
             mobileNumber = "12345678",
-            email = "prueba@poli.com",
+            email = "prueba@poli123.com",
             password = "prueba",
             
             initDeposit = "500",
@@ -87,7 +87,7 @@ public class SeleniumTest {
 
     @After
     public void tearDown() {
-        webDriver.quit();
+        //webDriver.quit();
     }
 
     @Test
@@ -128,6 +128,7 @@ public class SeleniumTest {
             assertEquals(mnsj, "Account Generated Successfully!!!");   
 	  }
           
+          @Test
           public void testValidateDepositAmount() throws InterruptedException {
 	    webDriver.get(baseUrl + "/index.php");
             homePage.clickOnDeposit();
