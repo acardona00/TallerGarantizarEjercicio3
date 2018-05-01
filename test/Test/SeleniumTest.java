@@ -15,6 +15,7 @@ import Pages.depositCreatedPage;
 import Pages.depositPage;
 import Pages.homePage;
 import Pages.newCustomerPage;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -71,10 +72,25 @@ public class SeleniumTest {
     public SeleniumTest() {
     }
 
+    //Genera string aleatorio para crear nuevos customers
+    public static String RandomEmail() {
+
+        int leftLimit = 97; // letter 'a'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
+        StringBuilder buffer = new StringBuilder(targetStringLength);
+        for (int i = 0; i < targetStringLength; i++) {
+            int randomLimitedInt = leftLimit + (int) (random.nextFloat() * (rightLimit - leftLimit + 1));
+            buffer.append((char) randomLimitedInt);
+        }
+        String generatedString = buffer.toString();
+        return generatedString;
+    }
+
     @BeforeClass
     public static void setUpClass() {
         System.setProperty("webdriver.chrome.driver", "C://chromedriver.exe");
-
     }
 
     @AfterClass
@@ -91,6 +107,8 @@ public class SeleniumTest {
         depositCreatedPage = new depositCreatedPage(webDriver);
         accountCreatedPage = new accountCreatedPage(webDriver);
         withdrawalSubstractPage = new WithdrawalSubstractPage(webDriver);
+        this.email = RandomEmail() + "@gmail.com";
+
 
     }
 
@@ -172,7 +190,6 @@ public class SeleniumTest {
 
     /*Caso de prueba 3: Verificar que al realizar un retiro (opción Withdrawal), el saldo de la cuenta sea
      afectado.*/
-    
     @Test
     public void testSubstractActualAmount() throws InterruptedException {
         webDriver.get(baseUrl + "/index.php");
@@ -192,7 +209,7 @@ public class SeleniumTest {
         Thread.sleep(2000);
         System.out.println(accountId2);
         homePage.clickOnWithdrawal();
-        withdrawalPage = new WithdrawalPage(webDriver,accountId2, substractAmount, description);
+        withdrawalPage = new WithdrawalPage(webDriver, accountId2, substractAmount, description);
         Thread.sleep(2000);
         int currentBalance = Integer.parseInt(withdrawalSubstractPage.getCurrentBalance());
         assertEquals(currentBalance, Integer.parseInt(initDeposit) - Integer.parseInt(substractAmount));
