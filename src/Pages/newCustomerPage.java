@@ -20,5 +20,76 @@ public class newCustomerPage {
     By fieldPassword = By.name("password");
     By btnSubmmit = By.name("sub");
     By btnReset = By.name("res");
+
+    public newCustomerPage(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
+
+    public void setWebDriver(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
+
+    public void setFieldCustomerName(String strFieldCustomerName) {
+        webDriver.findElement(fieldCustomerName).clear();
+        webDriver.findElement(fieldCustomerName).sendKeys(strFieldCustomerName);
+    }
+
+    public void setCheckbox(String strCheckbox) {
+        if (strCheckbox.equalsIgnoreCase("male")) {
+            webDriver.findElement(checkboxMale).click();
+        } else {
+            webDriver.findElement(checkboxFemale).click();
+        }
+    }
+
+
+    public void setDateBirth(String strDateBirth) {
+        webDriver.findElement(dateBirth).clear();
+        webDriver.findElement(dateBirth).sendKeys(strDateBirth);
+    }
+
+    public void setTextAddress(String strtextAddress) {
+        webDriver.findElement(textAddress).clear();
+        webDriver.findElement(textAddress).sendKeys(strtextAddress);
+    }
+
+    public void setFieldCity(String strFieldCity) {
+        webDriver.findElement(fieldCity).clear();
+        webDriver.findElement(fieldCity).sendKeys(strFieldCity);
+    }
+
+    public void setFieldState(String strFieldState) {
+        webDriver.findElement(fieldState).clear();
+        webDriver.findElement(fieldState).sendKeys(strFieldState);
+    }
+
+    public void setFieldPin(String strFieldPin) {
+        webDriver.findElement(fieldPin).clear();
+        webDriver.findElement(fieldPin).sendKeys(strFieldPin);
+    }
+
+    public void setFieldTelephone(String strFieldTelephone) {
+        webDriver.findElement(fieldTelephone).clear();
+        webDriver.findElement(fieldTelephone).sendKeys(strFieldTelephone);
+    }
+
+    public void setFieldEmail(String strFieldEmail) {
+        webDriver.findElement(fieldEmail).clear();
+        webDriver.findElement(fieldEmail).sendKeys(strFieldEmail);
+    }
+
+    public void setFieldPassword(String strFieldPassword) {
+        webDriver.findElement(fieldPassword).clear();
+        webDriver.findElement(fieldPassword).sendKeys(strFieldPassword);
+    }
+
+    public void setBtnSubmmit() {
+        webDriver.findElement(btnSubmmit).click();
+    }
+
+    public void setBtnReset() {
+        webDriver.findElement(btnReset).click();
+    }
+    
     
 }
