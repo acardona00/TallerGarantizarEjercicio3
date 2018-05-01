@@ -77,15 +77,6 @@ public class SeleniumTest {
         assertEquals(mnsj, "Manger Id : " + userId);
     }
 
-    @Test
-    public void testCreateCustomer() throws InterruptedException {
-        driver.get(baseUrl + "/computers");
-
-        pageHome.crearComputer();
-        pageComputer.crearComputer(nombre, intro, disco, compañia2);
-        Thread.sleep(2000);
-        String mnsj = pageHome.getMensaje();
-        assertEquals(mnsj, "Done! Computer " + nombre + " has been created");
-    }
+    
 
 }
