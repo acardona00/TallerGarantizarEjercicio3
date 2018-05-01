@@ -58,7 +58,7 @@ public final class depositPage {
     }
 
     public String getAlertLabel() {
-        return webDriver.findElement(alertLabel).getText();
+        return webDriver.switchTo().alert().getText();
     }
     
     
