@@ -6,6 +6,7 @@
 package Test;
 
 import Pages.WithdrawalPage;
+import Pages.WithdrawalSubstractPage;
 import Pages.accountCreatedPage;
 import Pages.accountPage;
 import Pages.balanceEnquiryPage;
@@ -42,13 +43,13 @@ public class SeleniumTest {
             state = "antioquia",
             pin = "123456",
             mobileNumber = "12345678",
-            email = "prueba@poliji5.com",
+            email = "prueba@finalsi.com",
             password = "prueba",
             initDeposit = "1000",
             accountId1 = "",
             accountId2 = "",
             amount = "200",
-            substractAmount="100",
+            substractAmount = "100",
             description = "Hi world",
             actualAmount = "";
 
@@ -62,6 +63,7 @@ public class SeleniumTest {
     depositCreatedPage depositCreatedPage;
     balanceEnquiryPage balanceEnquiryPage;
     WithdrawalPage withdrawalPage;
+    WithdrawalSubstractPage withdrawalSubstractPage;
 
     private WebDriver webDriver;
     private final String baseUrl = "http://demo.guru99.com/V4/";
@@ -88,13 +90,13 @@ public class SeleniumTest {
         customerCratedPage = new customerCreatedPage(webDriver);
         depositCreatedPage = new depositCreatedPage(webDriver);
         accountCreatedPage = new accountCreatedPage(webDriver);
-        
+        withdrawalSubstractPage = new WithdrawalSubstractPage(webDriver);
 
     }
 
     @After
     public void tearDown() {
-        //webDriver.quit();
+        webDriver.quit();
     }
 
     @Test
@@ -167,6 +169,9 @@ public class SeleniumTest {
         int currentBalance = Integer.parseInt(depositCreatedPage.getCurrentBalance());
         assertEquals(currentBalance, Integer.parseInt(amount) + Integer.parseInt(initDeposit));
     }
+
+    /*Caso de prueba 3: Verificar que al realizar un retiro (opción Withdrawal), el saldo de la cuenta sea
+     afectado.*/
     
     @Test
     public void testSubstractActualAmount() throws InterruptedException {
@@ -181,12 +186,16 @@ public class SeleniumTest {
         accountPage = new accountPage(webDriver, customerId, initDeposit);
         accountId1 = accountCreatedPage.getAccountId();
         Thread.sleep(2000);
+        homePage.clickOnNewAccount();
         accountPage = new accountPage(webDriver, customerId, initDeposit);
         accountId2 = accountCreatedPage.getAccountId();
+        Thread.sleep(2000);
+        System.out.println(accountId2);
         homePage.clickOnWithdrawal();
-        withdrawalPage = new WithdrawalPage(accountId2, substractAmount, description);
-        String mnsj = "";
-        assertEquals(mnsj, "Account Generated Successfully!!!");
+        withdrawalPage = new WithdrawalPage(webDriver,accountId2, substractAmount, description);
+        Thread.sleep(2000);
+        int currentBalance = Integer.parseInt(withdrawalSubstractPage.getCurrentBalance());
+        assertEquals(currentBalance, Integer.parseInt(initDeposit) - Integer.parseInt(substractAmount));
     }
 
 }

@@ -8,7 +8,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class WithdrawalPage {
+public final class WithdrawalPage {
 
     WebDriver webDriver;
     By accountNumber = By.name("accountno");
@@ -21,13 +21,19 @@ public class WithdrawalPage {
         this.webDriver = webDriver;
     }
 
-    public WithdrawalPage(String accountNumber, String amount, String description) {
+    public WithdrawalPage(WebDriver webDriver,String accountNumber, String amount, String description) {
+        setWebDriver(webDriver);
         setFieldAccounNumber(accountNumber);
         setFieldAmount(amount);
         setFieldDescription(description);
         clickSubmitButton();
     }
 
+    public void setWebDriver(WebDriver webDriver) {
+        this.webDriver = webDriver;
+    }
+
+    
     public void setFieldAccounNumber(String strFieldAccountNumber) {
         webDriver.findElement(accountNumber).clear();
         webDriver.findElement(accountNumber).sendKeys(strFieldAccountNumber);
