@@ -8,29 +8,39 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class balanceEnquiryPage {
+public class WithdrawalPage {
 
     WebDriver webDriver;
-    By accountNumber = By.xpath("//*[@id=\"customer\"]/tbody/tr[4]/td[2]");
+    By accountNumber = By.name("accountno");
+    By ammount = By.name("ammount");
+    By description = By.name("desc");
     By submitButton = By.name("AccSubmit");
     By resetButton = By.name("res");
 
-    public balanceEnquiryPage(WebDriver webDriver) {
+    public WithdrawalPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
 
-    public balanceEnquiryPage(String accountNum) {
-        setFieldAccounNumber(accountNum);
+    public WithdrawalPage(String accountNumber, String amount, String description) {
+        setFieldAccounNumber(accountNumber);
+        setFieldAmount(amount);
+        setFieldDescription(description);
         clickSubmitButton();
-    }
-
-    public void setWebDriver(WebDriver webDriver) {
-        this.webDriver = webDriver;
     }
 
     public void setFieldAccounNumber(String strFieldAccountNumber) {
         webDriver.findElement(accountNumber).clear();
         webDriver.findElement(accountNumber).sendKeys(strFieldAccountNumber);
+    }
+
+    public void setFieldAmount(String strFieldAmount) {
+        webDriver.findElement(ammount).clear();
+        webDriver.findElement(ammount).sendKeys(strFieldAmount);
+    }
+
+    public void setFieldDescription(String strFieldDescription) {
+        webDriver.findElement(description).clear();
+        webDriver.findElement(description).sendKeys(strFieldDescription);
     }
 
     public void clickSubmitButton() {
