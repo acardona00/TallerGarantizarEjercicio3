@@ -27,7 +27,7 @@ public class homePage {
     
     public void clickOnNewCustomer(){
         
-        webDriver.findElement(optionDeposit).click();
+        webDriver.findElement(optionNewCustomer).click();
     }
     
     public void clickOnNewAccount(){

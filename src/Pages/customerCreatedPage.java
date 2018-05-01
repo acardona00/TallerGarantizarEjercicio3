@@ -12,6 +12,7 @@ public class customerCreatedPage {
     
     WebDriver webDriver;
     By customerId =  By.xpath("//*[@id=\"customer\"]/tbody/tr[4]/td[2]");
+    By title = By.className("heading3");
 
     public customerCreatedPage(WebDriver webDriver) {
         this.webDriver = webDriver;
@@ -23,6 +24,11 @@ public class customerCreatedPage {
 
     public String getCustomerId() {
         return webDriver.findElement(customerId).getText();
+    }
+    
+    public String getTitle(){
+    
+    return webDriver.findElement(title).getText();
     }
 
    

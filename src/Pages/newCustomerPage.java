@@ -4,7 +4,7 @@ package Pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class newCustomerPage {
+public final class newCustomerPage {
     
     WebDriver webDriver;
     By fieldCustomerName = By.name("name");
@@ -24,7 +24,24 @@ public class newCustomerPage {
     public newCustomerPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
-
+    
+    public newCustomerPage(WebDriver webDriver,String customerName,String checkbox , String birth, String address, String city, String state
+    , String pin, String telephone,String email, String password) {
+        
+        setWebDriver(webDriver);
+        setFieldCustomerName(customerName);
+        setCheckbox(checkbox);
+        setDateBirth(birth);
+        setTextAddress(address);
+        setFieldCity(city);
+        setFieldState(state);
+        setFieldPin(pin);
+        setFieldTelephone(telephone);
+        setFieldEmail(email);
+        setFieldPassword(password);
+        setBtnSubmmit();
+    }
+    
     public void setWebDriver(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
@@ -44,7 +61,6 @@ public class newCustomerPage {
 
 
     public void setDateBirth(String strDateBirth) {
-        webDriver.findElement(dateBirth).clear();
         webDriver.findElement(dateBirth).sendKeys(strDateBirth);
     }
 

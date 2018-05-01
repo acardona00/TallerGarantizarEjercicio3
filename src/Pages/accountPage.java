@@ -10,10 +10,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 
 
-public class accountPage {
+ public final class accountPage {
     WebDriver webDriver;
     By customerId = By.name("cusid");
-    By selectType = By.name("selaccount");
     By initDeposit = By.name("inideposit");
     By btnSubmmit = By.name("button2");
     By btnReset = By.name("reset");
@@ -21,7 +20,15 @@ public class accountPage {
     public accountPage(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
-
+    
+     public accountPage(WebDriver webDriver,String customerId,String initDeposit) {
+        
+        setWebDriver(webDriver);
+         setCustomerId(customerId);
+         setInitDeposit(initDeposit);
+        setBtnSubmmit();
+    }
+     
     public void setWebDriver(WebDriver webDriver) {
         this.webDriver = webDriver;
     }
@@ -31,9 +38,6 @@ public class accountPage {
         webDriver.findElement(customerId).sendKeys(strCustomerId);
     }
 
-    public void setSelectType(String strSelectType) {
-        new Select(webDriver.findElement(customerId)).selectByVisibleText(strSelectType);
-    }
 
     public void setInitDeposit(String strInitDeposit) {
         webDriver.findElement(initDeposit).clear();

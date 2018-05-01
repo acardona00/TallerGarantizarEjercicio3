@@ -9,10 +9,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
 
-public class depositPage {
+public final class depositPage {
     WebDriver webDriver;
     By fieldAccountNumber = By.name("accountno");
-    By fieldAmmount = By.name("ammount");
+    By fieldAmount = By.name("ammount");
     By fieldDescription = By.name("desc");
     By btnSubmmit = By.name("AccSubmit");
     By btnReset = By.name("res");
@@ -20,6 +20,14 @@ public class depositPage {
 
     public depositPage(WebDriver webDriver) {
         this.webDriver = webDriver;
+    }
+    
+    public depositPage(WebDriver webDriver,String accountNum,String amount,String description) {
+        setWebDriver(webDriver);
+        setFieldAccountNumber(accountNum);
+        setFieldAmmount(amount);
+        setFieldDescription(description);
+        setBtnSubmmit();
     }
 
     public void setWebDriver(WebDriver webDriver) {
@@ -32,8 +40,8 @@ public class depositPage {
     }
 
     public void setFieldAmmount(String strFieldAmmount) {
-        webDriver.findElement(fieldAmmount).clear();
-        webDriver.findElement(fieldAmmount).sendKeys(strFieldAmmount);
+        webDriver.findElement(fieldAmount).clear();
+        webDriver.findElement(fieldAmount).sendKeys(strFieldAmmount);
     }
 
     public void setFieldDescription(String strFieldDescription) {
